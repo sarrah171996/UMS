@@ -57,18 +57,19 @@ export default function UsersList() {
   }
 
 
-  // const editUser = async(id)=>{
-  //   try {
+  const editUser = async()=>{
+    try {
 
-  //     let response = await axios.put(`https://dummyjson.com/users/${id}`)
-  //     console.log({res : response});
-  //  navigateToEditUserData
+      let response = await axios.put(`https://dummyjson.com/users/${userId}`)
+      console.log({res : response.data});
+      handleClose()
+   navigateToEditUserData()
 
-  //   } catch (error) {
-  //     console.log(error);
+    } catch (error) {
+      console.log(error);
 
-  //   }
-  // }
+    }
+  }
 
 
   useEffect(() => {
@@ -105,6 +106,19 @@ export default function UsersList() {
       </Modal>
 
 
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body>Are you sure you want to edit {userDtat?.firstName} {userDtat?.lastName} ?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            No
+          </Button>
+          <Button variant="warning" onClick={editUser} >
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <div className='title p-3 d-flex justify-content-between'>
         <h3>Users List</h3>
         <button className='btn btn-warning' onClick={navigateToUserData}>Add New User</button>
@@ -134,7 +148,7 @@ export default function UsersList() {
                 <td>{user.phone}</td>
                 <td>{user.birthDate} </td>
                 <td>
-                  <button onClick={() => (handleShow(user?.id))} className='border-0 bg-transparent'><i className="fa-solid fa-pen text-warning mx-2"></i> </button>
+                  <button onClick={() => handleShow(user)} className='border-0 bg-transparent'><i className="fa-solid fa-pen text-warning mx-2"></i> </button>
                   <button onClick={() => handleShow(user)} className='border-0 bg-transparent'><i className="fa-regular fa-trash-can text-warning mx-2"></i></button>
                 </td>
               </tr>

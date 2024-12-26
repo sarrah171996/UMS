@@ -8,6 +8,7 @@ import Home from './Components/Home/Home'
 import UsersList from './Components/UsersList/UsersList'
 import AddUser from './Components/AddUser/AddUser'
 import Profile from './Components/Profile/Profile'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   
@@ -37,6 +38,7 @@ function App() {
   return (
 <>
 
+<ToastContainer />
 
 <RouterProvider router={routes}></RouterProvider>
 

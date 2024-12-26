@@ -1,10 +1,15 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export default function AddUser() {
+
+
+let {id} = useParams();
+const [userDetails , setUserDetails] = ('')
+console.log({userData : id});
 
 
   let {
@@ -14,6 +19,24 @@ export default function AddUser() {
     formState: { errors },
 
   } =useForm()
+
+
+let updateUser = async(id)=>{
+  try {
+    const {data} = await axios.post(`https://dummyjson.com/users/${id}`)
+    setUserDetails(data)
+    console.log(data);
+
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
+
+  useEffect(() => {
+    updateUser(id)
+  }, [])
+
 
 
   let onSubmit = async(data)=>{

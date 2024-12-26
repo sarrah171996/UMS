@@ -12,7 +12,7 @@ export default function UsersList() {
 
   const [show, setShow] = useState(false);
 
-  const [userDtat, setUserData] = useState()
+  const [userData, setUserData] = useState()
   const [userId, setUserId] = useState(0)
 
   const handleClose = () => setShow(false);
@@ -84,7 +84,7 @@ export default function UsersList() {
   }
 
   let navigateToEditUserData = () => {
-    navigate('/dashboard/adduser')
+    navigate(`/dashboard/adduser/${userData.id}`)
   }
 
 
@@ -94,7 +94,7 @@ export default function UsersList() {
 
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Body>Are you sure you want to delete {userDtat?.firstName} {userDtat?.lastName} ?</Modal.Body>
+        <Modal.Body>Are you sure you want to delete {userData?.firstName} {userData?.lastName} ?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             No
@@ -108,7 +108,7 @@ export default function UsersList() {
 
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Body>Are you sure you want to edit {userDtat?.firstName} {userDtat?.lastName} ?</Modal.Body>
+        <Modal.Body>Are you sure you want to edit {userData?.firstName} {userData?.lastName} ?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             No

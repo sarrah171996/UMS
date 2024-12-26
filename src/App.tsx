@@ -29,7 +29,8 @@ function App() {
       {index : true , element :<Home/>},
       {path:'home' , element: <Home/>},
       {path:'userslist' , element: <UsersList/>},
-      {path:'adduser' , element : <AddUser/>},
+      {path:'adduser/:id' , element : <AddUser/>},
+      {path:'adduser/' , element : <AddUser/>},
       {path:'profile' ,element : <Profile/>}
     ]
 

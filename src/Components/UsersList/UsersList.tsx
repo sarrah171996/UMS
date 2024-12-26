@@ -53,7 +53,7 @@ const editUser = async(id)=>{
     
     let response = await axios.put(`https://dummyjson.com/users/${id}`)
     console.log({res : response});
-navigateToEditUserData
+ navigateToEditUserData
     
   } catch (error) {
     console.log(error);
@@ -89,7 +89,7 @@ let navigateToEditUserData = ()=>{
           <Button variant="secondary" onClick={handleClose}>
             No
           </Button>
-          <Button variant="warning" onClick={()=>handleShow(users.id)} >
+          <Button variant="warning" onClick={()=>handleShow} >
             Yes
           </Button>
         </Modal.Footer>
@@ -125,8 +125,8 @@ let navigateToEditUserData = ()=>{
   <td>{user.phone}</td>
   <td>{user.birthDate} </td>
   <td>
-   <button onClick={editUser} className='border-0 bg-transparent'><i className="fa-solid fa-pen text-warning mx-2"></i> </button> 
-   <button onClick={handleShow} className='border-0 bg-transparent'><i className="fa-regular fa-trash-can text-warning mx-2"></i></button> 
+   <button onClick={()=>(handleShow(user?.id))} className='border-0 bg-transparent'><i className="fa-solid fa-pen text-warning mx-2"></i> </button> 
+   <button onClick={()=>handleShow(user?.id)} className='border-0 bg-transparent'><i className="fa-regular fa-trash-can text-warning mx-2"></i></button> 
     </td>
 </tr>
 )

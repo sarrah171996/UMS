@@ -107,7 +107,9 @@ export default function UsersList() {
 
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Body>Are you sure you want to delete {userData?.firstName} {userData?.lastName} ?</Modal.Body>
+        <Modal.Body>
+        <i className="fa-regular fa-trash-can text-warning mx-2"></i>
+          Are you sure you want to delete {userData?.firstName} {userData?.lastName} ?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             No

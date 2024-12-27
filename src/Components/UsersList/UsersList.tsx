@@ -13,16 +13,20 @@ export default function UsersList() {
   const [show, setShow] = useState(false);
 
   const [userData, setUserData] = useState()
-  const [userId, setUserId] = useState(0)
+  const [userId, setUserId] = useState()
+
+  // console.log({
+  //   userId: userId,
+  //   userData: userData
+  // });
+  
 
   const handleClose = () => setShow(false);
 
   const handleShow = (user) => {
     setUserId(user.id)
     setUserData(user)
-    setShow(true)
-
-  };
+    setShow(true)  };
 
 
 
@@ -56,13 +60,20 @@ export default function UsersList() {
     }
   }
 
+  const getId =async(user)=>{
+    setUserId(user.id)
+      setUserData(user)
+     await editUser()
+   }
+ 
 
   const editUser = async()=>{
     try {
 
-      let response = await axios.put(`https://dummyjson.com/users/${userId}`)
-      console.log({res : response.data});
-      handleClose()
+      let {data} = await axios.put(`https://dummyjson.com/users/${userId}`)
+      console.log(data);
+      setUserData(data)
+      // handleClose()
    navigateToEditUserData()
 
     } catch (error) {
@@ -84,6 +95,8 @@ export default function UsersList() {
   }
 
   let navigateToEditUserData = () => {
+    // console.log(userId);
+    
     navigate(`/dashboard/adduser/${userData.id}`)
   }
 
@@ -107,7 +120,7 @@ export default function UsersList() {
 
 
 
-      <Modal show={show} onHide={handleClose}>
+      {/* <Modal show={show} onHide={handleClose}>
         <Modal.Body>Are you sure you want to edit {userData?.firstName} {userData?.lastName} ?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -117,7 +130,7 @@ export default function UsersList() {
             Yes
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
 
       <div className='title p-3 d-flex justify-content-between'>
         <h3>Users List</h3>
@@ -148,7 +161,7 @@ export default function UsersList() {
                 <td>{user.phone}</td>
                 <td>{user.birthDate} </td>
                 <td>
-                  <button onClick={() => handleShow(user)} className='border-0 bg-transparent'><i className="fa-solid fa-pen text-warning mx-2"></i> </button>
+                  <button onClick={()=>getId(user)} className='border-0 bg-transparent'><i className="fa-solid fa-pen text-warning mx-2"></i> </button>
                   <button onClick={() => handleShow(user)} className='border-0 bg-transparent'><i className="fa-regular fa-trash-can text-warning mx-2"></i></button>
                 </td>
               </tr>

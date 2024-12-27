@@ -25,7 +25,6 @@ export default function AddUser() {
     try {
       const { data } = await axios.get(`https://dummyjson.com/users/${id}`)
       setUserDetails(data)
-      console.log({ xxx: data });
 
     } catch (error) {
       console.log(error);
